@@ -457,7 +457,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    666
+                    342
                 </div>
                 
 
@@ -481,11 +481,26 @@
             <div id="articleContent">
                 <h2 id="C-学习篇（一）：类与对象-1"><a href="#C-学习篇（一）：类与对象-1" class="headerlink" title="C++学习篇（一）：类与对象(1)"></a>C++学习篇（一）：类与对象(1)</h2><p><strong>前提说明</strong>：本人因运气不好在大二的时候没有选到C++因而得自食其力的在网上找教程学，加上本人是一个编程小白，因此将学习C++的过程整理成博客以记录学习进度，总结学习经验。</p>
 <h3 id="1-类的构成"><a href="#1-类的构成" class="headerlink" title="1.类的构成"></a>1.类的构成</h3><p>类声明中的内容包括数据和函数，分别称为数据成员和成员函数。按访问权限划分，数据成员和成员函数又可分为共有、保护和私有3种。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassName</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	data;</span><br><span class="line">    	function;</span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">    	data;</span><br><span class="line">    	function;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    	data;</span><br><span class="line">    	function;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-C++"><code class="language-C++">class ClassName&#123;
+    public:
+        data;
+        function;
+    protected:
+        data;
+        function;
+    private:
+        data;
+        function;
+&#125;;
+</code></pre>
 <p>例如时钟类</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Clock</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">setClock</span><span class="params">(<span class="keyword">int</span> h, <span class="keyword">int</span> m, <span class="keyword">int</span> s)</span></span>;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    	<span class="keyword">int</span> h,m,s;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-C++"><code class="language-C++">class Clock&#123;
+    public:
+        void setClock(int h, int m, int s);
+    private:
+        int h,m,s;
+&#125;;
+</code></pre>
 <p>值得注意的是，三者的出场顺序可以随意，且private可以省略。</p>
 <h3 id="2-成员函数的定义"><a href="#2-成员函数的定义" class="headerlink" title="2.成员函数的定义"></a>2.成员函数的定义</h3><p><strong>2.1普通成员函数的定义</strong></p>
 <p>在类的声明中只给出成员函数的原型，而成员函数的定义写在类的外部。这种成员函数在类外定义的一般形式是：</p>
@@ -493,22 +508,65 @@
 <p>返回值类型 类名::成员函数名(参数表){    函数体}</p>
 </blockquote>
 <p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Clock</span>&#123;</span></span><br><span class="line">    	<span class="keyword">int</span> H, M, S;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">setClock</span><span class="params">(<span class="keyword">int</span> h, <span class="keyword">int</span> m, <span class="keyword">int</span> s)</span></span>;</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">showClock</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Clock::setClock</span><span class="params">(<span class="keyword">int</span> h,<span class="keyword">int</span> m,<span class="keyword">int</span> s)</span></span>&#123;</span><br><span class="line">    H = h;</span><br><span class="line">    M = m;</span><br><span class="line">    S = s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Clock::showClock</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;现在时间时：&quot;</span> &lt;&lt; H &lt;&lt; <span class="string">&quot;:&quot;</span> &lt;&lt; M &lt;&lt; <span class="string">&quot;:&quot;</span> &lt;&lt; S &lt;&lt; endl;</span><br><span class="line">&#125;；</span><br></pre></td></tr></table></figure>
+<pre class=" language-C++"><code class="language-C++">class Clock&#123;
+        int H, M, S;
+    public:
+        void setClock(int h, int m, int s);
+        void showClock();
+&#125;;
 
+void Clock::setClock(int h,int m,int s)&#123;
+    H = h;
+    M = m;
+    S = s;
+&#125;
+
+void Clock::showClock()&#123;
+    cout << "现在时间时：" << H << ":" << M << ":" << S << endl;
+&#125;；
+</code></pre>
 <p><strong>2.2内联成员函数的定义</strong></p>
 <p>隐式声明</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Clock</span>&#123;</span></span><br><span class="line">    	<span class="keyword">int</span> H, M, S;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">setClock</span><span class="params">(<span class="keyword">int</span> h, <span class="keyword">int</span> m, <span class="keyword">int</span> s)</span></span>&#123;</span><br><span class="line">    	H = h;</span><br><span class="line">    	M = m;</span><br><span class="line">    	S = s;</span><br><span class="line">	&#125;</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">showClock</span><span class="params">()</span></span>&#123;</span><br><span class="line">    	cout &lt;&lt; <span class="string">&quot;现在时间时：&quot;</span> &lt;&lt; H &lt;&lt; <span class="string">&quot;:&quot;</span> &lt;&lt; M &lt;&lt; <span class="string">&quot;:&quot;</span> &lt;&lt; S &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-c++"><code class="language-c++">class Clock&#123;
+        int H, M, S;
+    public:
+        void setClock(int h, int m, int s)&#123;
+        H = h;
+        M = m;
+        S = s;
+    &#125;
+        void showClock()&#123;
+        cout << "现在时间时：" << H << ":" << M << ":" << S << endl;
+    &#125;
+&#125;;
+</code></pre>
 <p>显式声明</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Clock</span>&#123;</span></span><br><span class="line">    	<span class="keyword">int</span> H, M, S;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">setClock</span><span class="params">(<span class="keyword">int</span> h, <span class="keyword">int</span> m, <span class="keyword">int</span> s)</span></span>;</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">showClock</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Clock::setClock</span><span class="params">(<span class="keyword">int</span> h,<span class="keyword">int</span> m,<span class="keyword">int</span> s)</span></span>&#123;</span><br><span class="line">    H = h;</span><br><span class="line">    M = m;</span><br><span class="line">    S = s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Clock::showClock</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;现在时间时：&quot;</span> &lt;&lt; H &lt;&lt; <span class="string">&quot;:&quot;</span> &lt;&lt; M &lt;&lt;<span class="string">&quot;:&quot;</span> &lt;&lt; S &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-c++"><code class="language-c++">class Clock&#123;
+        int H, M, S;
+    public:
+        void setClock(int h, int m, int s);
+        void showClock();
+&#125;;
 
+inline void Clock::setClock(int h,int m,int s)&#123;
+    H = h;
+    M = m;
+    S = s;
+&#125;
+
+inline void Clock::showClock()&#123;
+    cout << "现在时间时：" << H << ":" << M <<":" << S << endl;
+&#125;
+</code></pre>
 <p><strong>说明</strong>：在类中，使用inline定义内联函数时，必须将类的声明和内联成员函数的定义都放在同一个文件（或同一个头文件）中，否则编译时无法进行代码置换。</p>
 <p><strong>2.3对象的定义与使用</strong></p>
 <p>对象的定义有两种，可以在声明的同时定义，也可以声明后定义。</p>
 <p>类对象的访问也有两种，一种是.，一种是-&gt;，其中-&gt;对应的是指针变量。</p>
 <p>对象赋值：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Clock op;</span><br><span class="line">op.<span class="built_in">setClock</span>(<span class="number">2</span>,<span class="number">12</span>,<span class="number">32</span>);</span><br><span class="line">op.<span class="built_in">showClock</span>();</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-c++"><code class="language-c++">Clock op;
+op.setClock(2,12,32);
+op.showClock();
+</code></pre>
 <hr>
 <p>持续更新，但速度可能emmmm（懂的都懂hh）</p>
 
@@ -1009,7 +1067,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">874</span>
+                        class="white-color">548</span>
             
             
             
