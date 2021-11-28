@@ -30,8 +30,8 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Luoyusheng's blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Luoyusheng's blog" type="application/atom+xml">
+</head>
 
 
 
@@ -549,11 +549,11 @@ cat::cat(cat& other)
 <blockquote>
 <p>拷贝构造函数分为两种：浅拷贝构造函数和深拷贝构造函数。C++提供的默认拷贝构造函数只是对对象进行数据拷贝（逐个数据成员依次拷贝），即只复制对象数据而不复制对象资源。但对于如图3.1所示的第二种情况，浅拷贝构造函数不能有效处理</p>
 </blockquote>
-<p><img src="C-%E5%AD%A6%E4%B9%A0%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89.assets/image-20211128143038419.png" alt="image-20211128143038419"></p>
+<p><img src="https://i.loli.net/2021/11/28/TdfKJwOjoruEV6G.png" alt="image-20211128143038419.png"></p>
 <blockquote>
 <p>一般情况下，只需使用编译系统提供的浅拷贝构造函数即可。但是如果对象的数据成员包含指向堆空间的指针等资源时，就不能使用浅拷贝方式，因为两个对象会拥有同一个资源，对象析构时，该资源将经历两次返还。此时，必须自定义深拷贝构造函数，为创建的对象分配堆空间，否则会出现动态分配的指针变量悬空的情况。深拷贝构造函数需要同时复制对象资源和数据，如图3.2所示</p>
 </blockquote>
-<p><img src="C-%E5%AD%A6%E4%B9%A0%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89.assets/image-20211128143224366.png" alt="image-20211128143224366"></p>
+<p><img src="https://i.loli.net/2021/11/28/Q5IYFTj7OmcqGCA.png" alt="image-20211128143224366.png"></p>
 <h3 id="二、析构函数"><a href="#二、析构函数" class="headerlink" title="二、析构函数"></a>二、析构函数</h3><p>类的另一个特殊成员函数是析构函数。析构函数的功能是当对象被撤销时，释放该对象占用的存储空间。析构函数的作用与构造函数正好相反，一般情况下，析构函数执行构造函数的逆操作。在对象被撤销时，编译系统将自动调用析构函数，执行一些对象撤销前的清理任务</p>
 <p>与构造函数相同的是在定义析构函数时，不能指定任何的返回值类型，也不能使用void。与构造函数不同的是构造函数可以带参数，可以重载，而析构函数没有参数，每个类只能有一个析构函数。析构函数的函数名为类名前加~。</p>
 <pre class=" language-c++"><code class="language-c++">class Score&#123;
