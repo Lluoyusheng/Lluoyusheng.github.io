@@ -4,9 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="第一篇博客, Luoyusheng&#39;s blog">
-    <meta name="description" content="第一篇博客（其实算第二篇，因为自动生成了hello world哈哈哈哈哈）主要是想记录一下自己写博客的生涯，之前写记录都是在记事本里写，感觉没有那味儿，在William同学的指导下，搭建了自己的博客，开启了我的博客生涯。
-初来乍到，请多指教">
+    <meta name="keywords" content="C++学习篇（二）, Luoyusheng&#39;s blog">
+    <meta name="description" content="C++学习篇之构造函数与析构函数一、构造函数构造函数是一种特殊的成员函数，它主要用于为对象分配空间，进行初始化。构造函数的名字必须与类名相同，而不能由用户任意命名。它可以有任意类型的参数，但不能具有返回值。它不需要用户来调用，而是在建立对象">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>第一篇博客 | Luoyusheng&#39;s blog</title>
+    <title>C++学习篇（二） | Luoyusheng&#39;s blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -316,7 +315,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">第一篇博客</h1>
+                    <h1 class="description center-align post-title">C++学习篇（二）</h1>
                 </div>
             </div>
         </div>
@@ -430,9 +429,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/C/">
+                                <span class="chip bg-color">C++</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -444,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-11-23
+                    2021-11-28
                 </div>
                 
 
@@ -453,7 +456,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    133
+                    1.1k
                 </div>
                 
 
@@ -475,9 +478,170 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>第一篇博客（其实算第二篇，因为自动生成了hello world哈哈哈哈哈）主要是想记录一下自己写博客的生涯，之前写记录都是在记事本里写，感觉没有那味儿，在William同学的指导下，搭建了自己的博客，开启了我的博客生涯。</p>
-<p>初来乍到，请多指教！</p>
-<p>我会持续更新我的算法题解已经其他的相关学习上的问题与解答，欢迎大家与我一起讨论hhh~</p>
+                <h2 id="C-学习篇之构造函数与析构函数"><a href="#C-学习篇之构造函数与析构函数" class="headerlink" title="C++学习篇之构造函数与析构函数"></a>C++学习篇之构造函数与析构函数</h2><h3 id="一、构造函数"><a href="#一、构造函数" class="headerlink" title="一、构造函数"></a>一、构造函数</h3><p>构造函数是一种特殊的成员函数，它主要用于为对象分配空间，进行初始化。<strong>构造函数的名字必须与类名相同，而不能由用户任意命名。</strong>它可以有任意类型的参数，但不能具有返回值。它不需要用户来调用，而是在建立对象时自动执行。</p>
+<pre class=" language-c++"><code class="language-c++">class Score&#123;
+public:
+    Score(int m, int f);  //构造函数
+    void setScore(int m, int f);
+    void showScore();
+private:
+    int mid_exam;
+    int fin_exam;
+&#125;;
+
+Score::Score(int m, int f)
+&#123;
+    mid_exam = m;
+    fin_exam = f;
+&#125;
+</code></pre>
+<p>建立对象的同时，给构造函数的数据成员赋值的形式有两种：</p>
+<pre class=" language-c++"><code class="language-c++">// 1.类名 对象名[(实参表)]
+Score op1(99, 100);
+op1.showScore();
+
+// 2.类名 *指针变量名 = new 类名[(实参表)]
+Score *p;
+p = new Score(99, 100);
+p->showScore();
+---------------------------------------------------------------------------------
+Score *p = new Score(99, 100);
+p->showScore();
+</code></pre>
+<p><strong>说明</strong>：</p>
+<blockquote>
+<ul>
+<li>构造函数的名字<strong>必须与类名相同</strong>，否则编译程序将把它当做一般的成员函数来处理。</li>
+<li>构造函数没有返回值，在定义构造函数时，是不能说明它的类型的。</li>
+<li>与普通的成员函数一样，构造函数的函数体可以写在类体内，也可写在类体外。</li>
+<li>构造函数一般声明为共有成员，但它不需要也不能像其他成员函数那样被显式地调用，它是定义对象的同时被自动调用，而且只执行一次。</li>
+<li>构造函数可以不带参数。</li>
+</ul>
+</blockquote>
+<h4 id="拷贝构造函数（复制构造函数）"><a href="#拷贝构造函数（复制构造函数）" class="headerlink" title="拷贝构造函数（复制构造函数）"></a><strong>拷贝构造函数</strong>（复制构造函数）</h4><p>功能：用一个已有的对象来初始化另一个新创建的同类对象。</p>
+<blockquote>
+<p>拷贝构造函数的声明形式：<strong>类名(类名&amp; ); 或 类名(类名&amp; 对象名)</strong>;</p>
+</blockquote>
+<p>例如：</p>
+<pre class=" language-c++"><code class="language-c++">class cat &#123;
+    int age;   float weight;   char* color;
+  public:
+    cat();
+    cat(cat &);    //拷贝构造函数的声明
+    void plus()&#123;age++;&#125;
+    void hunt();
+&#125;; 
+
+cat::cat(cat& other)
+&#123;
+  age = other.age;
+  weight = other.weight;
+  color = other.color;
+&#125; 
+</code></pre>
+<p>调用拷贝构造函数的三种情况：</p>
+<ul>
+<li>当用类的一个对象去初始化该类的另一个对象时；</li>
+<li>当函数的形参是类的对象，调用函数进行形参和实参结合时；</li>
+<li>当函数的返回值是对象，函数执行完成返回调用者时。</li>
+</ul>
+<p><strong>浅拷贝和深拷贝</strong></p>
+<blockquote>
+<p>拷贝构造函数分为两种：浅拷贝构造函数和深拷贝构造函数。C++提供的默认拷贝构造函数只是对对象进行数据拷贝（逐个数据成员依次拷贝），即只复制对象数据而不复制对象资源。但对于如图3.1所示的第二种情况，浅拷贝构造函数不能有效处理</p>
+</blockquote>
+<p><img src="C-%E5%AD%A6%E4%B9%A0%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89.assets/image-20211128143038419.png" alt="image-20211128143038419"></p>
+<blockquote>
+<p>一般情况下，只需使用编译系统提供的浅拷贝构造函数即可。但是如果对象的数据成员包含指向堆空间的指针等资源时，就不能使用浅拷贝方式，因为两个对象会拥有同一个资源，对象析构时，该资源将经历两次返还。此时，必须自定义深拷贝构造函数，为创建的对象分配堆空间，否则会出现动态分配的指针变量悬空的情况。深拷贝构造函数需要同时复制对象资源和数据，如图3.2所示</p>
+</blockquote>
+<p><img src="C-%E5%AD%A6%E4%B9%A0%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89.assets/image-20211128143224366.png" alt="image-20211128143224366"></p>
+<h3 id="二、析构函数"><a href="#二、析构函数" class="headerlink" title="二、析构函数"></a>二、析构函数</h3><p>类的另一个特殊成员函数是析构函数。析构函数的功能是当对象被撤销时，释放该对象占用的存储空间。析构函数的作用与构造函数正好相反，一般情况下，析构函数执行构造函数的逆操作。在对象被撤销时，编译系统将自动调用析构函数，执行一些对象撤销前的清理任务</p>
+<p>与构造函数相同的是在定义析构函数时，不能指定任何的返回值类型，也不能使用void。与构造函数不同的是构造函数可以带参数，可以重载，而析构函数没有参数，每个类只能有一个析构函数。析构函数的函数名为类名前加~。</p>
+<pre class=" language-c++"><code class="language-c++">class Score&#123;
+public:
+    Score(int m = 0, int f = 0);
+    ~Score();       //析构函数
+private:
+    int mid_exam;
+    int fin_exam;
+&#125;;
+
+Score::Score(int m, int f) : mid_exam(m), fin_exam(f)
+&#123;
+    cout << "构造函数使用中..." << endl;
+&#125;
+
+Score::~Score()
+&#123;
+    cout << "析构函数使用中..." << endl;
+&#125;
+</code></pre>
+<p>1、析构函数的自动调用</p>
+<blockquote>
+<p>（1）一个动态分配的对象被释放，即使用delete删除对象时，编译系统会自动调用析构函数</p>
+<p>（2）一个编译系统创建的临时对象不再需要时</p>
+<p>（3）程序运行结束时</p>
+</blockquote>
+<p>2、析构函数的手工调用</p>
+<p>理论上，构造函数只能由编译系统自动调用，而析构函数可以使用下述方法手工调用：</p>
+<p>​                                                 <strong>对象名.类名::析构函数名();</strong></p>
+<p>3、析构函数与构造函数的调用顺序</p>
+<blockquote>
+<p>构造函数和析构函数的调用顺序刚好相反：先构造的后析构</p>
+</blockquote>
+<pre class=" language-c++"><code class="language-c++">#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Student&#123;
+private:
+    char *name;
+    char *stu_no;
+    float score;
+public:
+    Student(char *name1, char *stu_no1, float score1);
+    ~Student();
+    void modify(float score1);
+    void show();
+&#125;;
+
+Student::Student(char *name1, char *stu_no1, float score1)
+&#123;
+    name = new char[strlen(name1) + 1];
+    strcpy(name, name1);
+    stu_no = new char[strlen(stu_no1) + 1];
+    strcpy(stu_no, stu_no1);
+    score = score1;
+&#125;
+
+Student::~Student() 
+&#123;
+    delete []name;
+    delete []stu_no;
+&#125;
+
+void Student::modify(float score1) 
+&#123;
+    score = score1;
+&#125;
+
+void Student::show()
+&#123;
+    cout << "姓名: " << name << endl;
+    cout << "学号: " << stu_no << endl;
+    cout << "成绩：" << score << endl;
+&#125;
+
+int main()
+&#123;
+    Student stu("邻菲无口", "15462421", 99);
+    stu.modify(100);
+    stu.show();
+    return 0;
+&#125;
+</code></pre>
+<p>如果没有给定构造函数和析构函数，编译系统会自动生成默认构造函数和析构函数。</p>
+<p>本章学习于<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44368437/article/details/117563488?ops_request_misc=%7B%22request_id%22:%22163806200616780265482524%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=163806200616780265482524&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-2-117563488.first_rank_v2_pc_rank_v29&utm_term=C++&spm=1018.2226.3001.4187">《C++面向对象程序设计》✍千处细节、万字总结（建议收藏）_恋风-CSDN博客</a></p>
 
                 
             </div>
@@ -504,7 +668,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://lluoyusheng.github.io/2021/11/23/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">http://lluoyusheng.github.io/2021/11/23/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</a>
+                    <a href="http://lluoyusheng.github.io/2021/11/28/C-%E5%AD%A6%E4%B9%A0%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89/">http://lluoyusheng.github.io/2021/11/28/C-%E5%AD%A6%E4%B9%A0%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -541,7 +705,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/C/">
+                                    <span class="chip bg-color">C++</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -711,9 +879,56 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2021/11/28/C-%E5%AD%A6%E4%B9%A0%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="C++学习篇（二）">
+                        
+                        <span class="card-title">C++学习篇（二）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Luoyusheng
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2021/11/26/C-%E5%AD%A6%E4%B9%A0%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89/">
                     <div class="card-image">
@@ -731,9 +946,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-26
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-26
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -749,43 +964,6 @@
                         <span class="chip bg-color">C++；类和对象</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/11/23/hello-world/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
-                        
-                        <span class="card-title">Hello World</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-23
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            Luoyusheng
-                            
-                        </span>
-                    </div>
                 </div>
                 
             </div>
