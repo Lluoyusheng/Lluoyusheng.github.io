@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>K倍区间</title>
+      <link href="/2021/12/12/K%E5%80%8D%E5%8C%BA%E9%97%B4/"/>
+      <url>/2021/12/12/K%E5%80%8D%E5%8C%BA%E9%97%B4/</url>
+      
+        <content type="html"><![CDATA[<h2 id="K倍区间（时间复杂度从n三方—-gt-n平方—-gt-n）"><a href="#K倍区间（时间复杂度从n三方—-gt-n平方—-gt-n）" class="headerlink" title="K倍区间（时间复杂度从n三方—-&gt;n平方—-&gt;n）"></a>K倍区间（时间复杂度从n三方—-&gt;n平方—-&gt;n）</h2><p>给定一个长度为 <em>N</em> 的数列，A1,A2,…AN，如果其中一段连续的子序列 <em>Ai</em>,<em>Ai</em>+1,…<em>Aj</em> 之和是 <em>K</em> 的倍数，我们就称这个区间 [<em>i</em>,<em>j</em>] 是 <em>K</em> 倍区间。  </p><p>你能求出数列中总共有多少个 <em>K</em> 倍区间吗？  </p><h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行包含两个整数 <em>N</em> 和 <em>K</em>。</p><p>以下 <em>N</em> 行每行包含一个整数 <em>Ai</em>。</p><h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出一个整数，代表 <em>K</em>倍区间的数目。</p><h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>1≤<em>N</em>,<em>K</em>≤100000,<br>1≤<em>Ai</em>≤100000</p><h4 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h4><pre><code>5 212345</code></pre><h4 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h4><pre><code>6</code></pre><h3 id="一、暴力做法"><a href="#一、暴力做法" class="headerlink" title="一、暴力做法"></a>一、暴力做法</h3><p>这道题的意思就是求出所有区间能够整除给定数K的区间个数，按照正常思路，首先想到的就是枚举一下所有区间，算出每个区间的和，将这个和去模K，若能整除，则计数器+1。(值得注意的是，该数据最大值超过了int的范围，因此要用long long int)</p><p>代码如下：</p><pre class=" language-c++"><code class="language-c++">#include<iostream>#include<algorithm>const int N = 100010;long long int s[N], res;int n, k;int main()&#123;    scanf("%d%d",&n,&k);    for(int i = 1; i <= n; i++)    &#123;        scanf("%d",&s[i]);    &#125;    for(int i = 1; i <= n; i++)    &#123;        for(int j = 1; j <=i; j++)        &#123;            int sum = 0;            for(int h = j; h <= i; h++)            &#123;                sum += s[h];            &#125;            if(sum%k == 0)                res++;        &#125;    &#125;    printf("%d",res);    return 0;&#125;</code></pre><h3 id="二、前缀和方法降低时间复杂度"><a href="#二、前缀和方法降低时间复杂度" class="headerlink" title="二、前缀和方法降低时间复杂度"></a>二、前缀和方法降低时间复杂度</h3><p>首先先简单描述一下什么是前缀和，就是可以这样理解：利用一个数据s[N]，里面存放的是从第一个元素里的值加到该元素（i）的值的总和，存放到s[i]里。</p><p>利用这个方法可以减少一层循环</p><p>代码如下：</p><pre class=" language-c++"><code class="language-c++">#include<iostream>#include<algorithm>const int N = 100010;long long int s[N], res;int n, k;int main()&#123;    scanf("%d%d",&n,&k);    for(int i = 1; i <= n; i++)    &#123;        scanf("%d",&s[i]);        s[i] += s[i-1]              //前缀和思想    &#125;    for(int i = 1; i <= n; i++)    &#123;        for(int j = 1; j <=i; j++)        &#123;            if((s[i]-s[j-1]) % k == 0)            &#123;                res++;            &#125;        &#125;    &#125;    printf("%d",res);    return 0;&#125;</code></pre><h3 id="三、优化成O-n-复杂度（重头戏hh）"><a href="#三、优化成O-n-复杂度（重头戏hh）" class="headerlink" title="三、优化成O(n)复杂度（重头戏hh）"></a>三、优化成O(n)复杂度（重头戏hh）</h3><p>(1)首先肯定是用前缀和数组s[N]，而对于过分大的数字两层循环会超时，因此还得优化到一层循环。</p><p>(2)分析可得若求某一个区间的和，就是s[r]−s[l−1]。而若某个区间满足k倍区间,<br>就一定满足(s[r]−s[l−1])%k==0,然后化解就是s[r]%k==s[l−1]%k。</p><p>(3)此时，计算完前缀和数组后，用一个cnt[n]<br>数组(其中cnt[i]==1表示前缀和数组中对k取模余数是i的前缀和有1</p><p>个)来记录有多少个前缀和他们取模之后是一样的数字。</p><p>(4)从前往后循环，每次记录前缀和取模之后的数据，也就是cnt[s[i]<br>%k]，往后循环一次，先看前面有无和该前缀和取模之后数字一样的前缀和，有1个一样的则答案+1、2个答案+2···；随后记得每次把cnt[s[i]%k]++。<br>注意</p><p>还得把cnt[0]<br>赋值1，因为没有计算0%k==0这一项。</p><p>本人在思考的时候，一直没办法理解这两行代码：</p><pre><code>res += cnt[sum[i] % k];cnt[sum[i] % k]++;</code></pre><p>直到某一时刻突然感觉任督二脉被打通了，然后就明白了。cnt其实累积的是从第1个到第l-1个的与s[r]相同余数的个数，等到枚举到r = i的时候，就可以知道前面有几个跟s[r]相等的了。</p><p>上代码：</p><pre class=" language-c++"><code class="language-c++">#include<iostream>#include<algorithm>using namespace std;const int N = 100010;long long int s[N];int cnt[N];int n,k;long long int res;int main()&#123;    cnt[0] = 1;    scanf("%d%d",&n,&k);    for(int i=1;i<=n;i++)&#123;        scanf("%lld",&s[i]);        s[i] += s[i-1];    &#125;        for(int i=1;i<=n;i++)&#123;        res += cnt[s[i]%k];        cnt[s[i]%k]++;    &#125;    printf("%lld",res);    return 0;&#125;</code></pre><p>ps:蓝桥杯的题目就是思路难想但是代码简洁，因此要多思考，如果遇到没办法用最优解来解决的，也可以先从暴力来做，一步一步优化，蓝桥杯是按照通过的例子来给分的。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 前缀和 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>C++学习篇（二）</title>
       <link href="/2021/11/28/C-%E5%AD%A6%E4%B9%A0%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
       <url>/2021/11/28/C-%E5%AD%A6%E4%B9%A0%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89/</url>

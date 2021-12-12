@@ -6,7 +6,7 @@
   <link href="http://lluoyusheng.github.io/atom.xml" rel="self"/>
   
   <link href="http://lluoyusheng.github.io/"/>
-  <updated>2021-11-28T06:50:42.288Z</updated>
+  <updated>2021-12-12T13:37:41.593Z</updated>
   <id>http://lluoyusheng.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>K倍区间</title>
+    <link href="http://lluoyusheng.github.io/2021/12/12/K%E5%80%8D%E5%8C%BA%E9%97%B4/"/>
+    <id>http://lluoyusheng.github.io/2021/12/12/K%E5%80%8D%E5%8C%BA%E9%97%B4/</id>
+    <published>2021-12-12T12:47:07.000Z</published>
+    <updated>2021-12-12T13:37:41.593Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;K倍区间（时间复杂度从n三方—-gt-n平方—-gt-n）&quot;&gt;&lt;a href=&quot;#K倍区间（时间复杂度从n三方—-gt-n平方—-gt-n）&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="前缀和" scheme="http://lluoyusheng.github.io/tags/%E5%89%8D%E7%BC%80%E5%92%8C/"/>
+    
+  </entry>
   
   <entry>
     <title>C++学习篇（二）</title>

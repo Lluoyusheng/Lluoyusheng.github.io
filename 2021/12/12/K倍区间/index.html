@@ -4,8 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="C++学习篇（二）, Luoyusheng&#39;s blog">
-    <meta name="description" content="C++学习篇之构造函数与析构函数一、构造函数构造函数是一种特殊的成员函数，它主要用于为对象分配空间，进行初始化。构造函数的名字必须与类名相同，而不能由用户任意命名。它可以有任意类型的参数，但不能具有返回值。它不需要用户来调用，而是在建立对象">
+    <meta name="keywords" content="K倍区间, Luoyusheng&#39;s blog">
+    <meta name="description" content="K倍区间（时间复杂度从n三方—-&amp;gt;n平方—-&amp;gt;n）给定一个长度为 N 的数列，A1,A2,…AN，如果其中一段连续的子序列 Ai,Ai+1,…Aj 之和是 K 的倍数，我们就称这个区间 [i,j] 是 K 倍区间。  
+你能求出">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>C++学习篇（二） | Luoyusheng&#39;s blog</title>
+    <title>K倍区间 | Luoyusheng&#39;s blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -310,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">C++学习篇（二）</h1>
+                    <h1 class="description center-align post-title">K倍区间</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +432,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/C/">
-                                <span class="chip bg-color">C++</span>
+                            <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/">
+                                <span class="chip bg-color">前缀和</span>
                             </a>
                         
                     </div>
@@ -447,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-11-28
+                    2021-12-12
                 </div>
                 
 
@@ -456,7 +457,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    299
                 </div>
                 
 
@@ -478,170 +479,126 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="C-学习篇之构造函数与析构函数"><a href="#C-学习篇之构造函数与析构函数" class="headerlink" title="C++学习篇之构造函数与析构函数"></a>C++学习篇之构造函数与析构函数</h2><h3 id="一、构造函数"><a href="#一、构造函数" class="headerlink" title="一、构造函数"></a>一、构造函数</h3><p>构造函数是一种特殊的成员函数，它主要用于为对象分配空间，进行初始化。<strong>构造函数的名字必须与类名相同，而不能由用户任意命名。</strong>它可以有任意类型的参数，但不能具有返回值。它不需要用户来调用，而是在建立对象时自动执行。</p>
-<pre class=" language-c++"><code class="language-c++">class Score&#123;
-public:
-    Score(int m, int f);  //构造函数
-    void setScore(int m, int f);
-    void showScore();
-private:
-    int mid_exam;
-    int fin_exam;
-&#125;;
-
-Score::Score(int m, int f)
-&#123;
-    mid_exam = m;
-    fin_exam = f;
-&#125;
+                <h2 id="K倍区间（时间复杂度从n三方—-gt-n平方—-gt-n）"><a href="#K倍区间（时间复杂度从n三方—-gt-n平方—-gt-n）" class="headerlink" title="K倍区间（时间复杂度从n三方—-&gt;n平方—-&gt;n）"></a>K倍区间（时间复杂度从n三方—-&gt;n平方—-&gt;n）</h2><p>给定一个长度为 <em>N</em> 的数列，A1,A2,…AN，如果其中一段连续的子序列 <em>Ai</em>,<em>Ai</em>+1,…<em>Aj</em> 之和是 <em>K</em> 的倍数，我们就称这个区间 [<em>i</em>,<em>j</em>] 是 <em>K</em> 倍区间。  </p>
+<p>你能求出数列中总共有多少个 <em>K</em> 倍区间吗？  </p>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行包含两个整数 <em>N</em> 和 <em>K</em>。</p>
+<p>以下 <em>N</em> 行每行包含一个整数 <em>Ai</em>。</p>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出一个整数，代表 <em>K</em>倍区间的数目。</p>
+<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>1≤<em>N</em>,<em>K</em>≤100000,<br>1≤<em>Ai</em>≤100000</p>
+<h4 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h4><pre><code>5 2
+1
+2
+3
+4
+5
 </code></pre>
-<p>建立对象的同时，给构造函数的数据成员赋值的形式有两种：</p>
-<pre class=" language-c++"><code class="language-c++">// 1.类名 对象名[(实参表)]
-Score op1(99, 100);
-op1.showScore();
-
-// 2.类名 *指针变量名 = new 类名[(实参表)]
-Score *p;
-p = new Score(99, 100);
-p->showScore();
----------------------------------------------------------------------------------
-Score *p = new Score(99, 100);
-p->showScore();
+<h4 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h4><pre><code>6
 </code></pre>
-<p><strong>说明</strong>：</p>
-<blockquote>
-<ul>
-<li>构造函数的名字<strong>必须与类名相同</strong>，否则编译程序将把它当做一般的成员函数来处理。</li>
-<li>构造函数没有返回值，在定义构造函数时，是不能说明它的类型的。</li>
-<li>与普通的成员函数一样，构造函数的函数体可以写在类体内，也可写在类体外。</li>
-<li>构造函数一般声明为共有成员，但它不需要也不能像其他成员函数那样被显式地调用，它是定义对象的同时被自动调用，而且只执行一次。</li>
-<li>构造函数可以不带参数。</li>
-</ul>
-</blockquote>
-<h4 id="拷贝构造函数（复制构造函数）"><a href="#拷贝构造函数（复制构造函数）" class="headerlink" title="拷贝构造函数（复制构造函数）"></a><strong>拷贝构造函数</strong>（复制构造函数）</h4><p>功能：用一个已有的对象来初始化另一个新创建的同类对象。</p>
-<blockquote>
-<p>拷贝构造函数的声明形式：<strong>类名(类名&amp; ); 或 类名(类名&amp; 对象名)</strong>;</p>
-</blockquote>
-<p>例如：</p>
-<pre class=" language-c++"><code class="language-c++">class cat &#123;
-    int age;   float weight;   char* color;
-  public:
-    cat();
-    cat(cat &);    //拷贝构造函数的声明
-    void plus()&#123;age++;&#125;
-    void hunt();
-&#125;; 
-
-cat::cat(cat& other)
-&#123;
-  age = other.age;
-  weight = other.weight;
-  color = other.color;
-&#125; 
-</code></pre>
-<p>调用拷贝构造函数的三种情况：</p>
-<ul>
-<li>当用类的一个对象去初始化该类的另一个对象时；</li>
-<li>当函数的形参是类的对象，调用函数进行形参和实参结合时；</li>
-<li>当函数的返回值是对象，函数执行完成返回调用者时。</li>
-</ul>
-<p><strong>浅拷贝和深拷贝</strong></p>
-<blockquote>
-<p>拷贝构造函数分为两种：浅拷贝构造函数和深拷贝构造函数。C++提供的默认拷贝构造函数只是对对象进行数据拷贝（逐个数据成员依次拷贝），即只复制对象数据而不复制对象资源。但对于如图3.1所示的第二种情况，浅拷贝构造函数不能有效处理</p>
-</blockquote>
-<p><img src="https://i.loli.net/2021/11/28/TdfKJwOjoruEV6G.png" alt="image-20211128143038419.png"></p>
-<blockquote>
-<p>一般情况下，只需使用编译系统提供的浅拷贝构造函数即可。但是如果对象的数据成员包含指向堆空间的指针等资源时，就不能使用浅拷贝方式，因为两个对象会拥有同一个资源，对象析构时，该资源将经历两次返还。此时，必须自定义深拷贝构造函数，为创建的对象分配堆空间，否则会出现动态分配的指针变量悬空的情况。深拷贝构造函数需要同时复制对象资源和数据，如图3.2所示</p>
-</blockquote>
-<p><img src="https://i.loli.net/2021/11/28/Q5IYFTj7OmcqGCA.png" alt="image-20211128143224366.png"></p>
-<h3 id="二、析构函数"><a href="#二、析构函数" class="headerlink" title="二、析构函数"></a>二、析构函数</h3><p>类的另一个特殊成员函数是析构函数。析构函数的功能是当对象被撤销时，释放该对象占用的存储空间。析构函数的作用与构造函数正好相反，一般情况下，析构函数执行构造函数的逆操作。在对象被撤销时，编译系统将自动调用析构函数，执行一些对象撤销前的清理任务</p>
-<p>与构造函数相同的是在定义析构函数时，不能指定任何的返回值类型，也不能使用void。与构造函数不同的是构造函数可以带参数，可以重载，而析构函数没有参数，每个类只能有一个析构函数。析构函数的函数名为类名前加~。</p>
-<pre class=" language-c++"><code class="language-c++">class Score&#123;
-public:
-    Score(int m = 0, int f = 0);
-    ~Score();       //析构函数
-private:
-    int mid_exam;
-    int fin_exam;
-&#125;;
-
-Score::Score(int m, int f) : mid_exam(m), fin_exam(f)
-&#123;
-    cout << "构造函数使用中..." << endl;
-&#125;
-
-Score::~Score()
-&#123;
-    cout << "析构函数使用中..." << endl;
-&#125;
-</code></pre>
-<p>1、析构函数的自动调用</p>
-<blockquote>
-<p>（1）一个动态分配的对象被释放，即使用delete删除对象时，编译系统会自动调用析构函数</p>
-<p>（2）一个编译系统创建的临时对象不再需要时</p>
-<p>（3）程序运行结束时</p>
-</blockquote>
-<p>2、析构函数的手工调用</p>
-<p>理论上，构造函数只能由编译系统自动调用，而析构函数可以使用下述方法手工调用：</p>
-<p>​                                                 <strong>对象名.类名::析构函数名();</strong></p>
-<p>3、析构函数与构造函数的调用顺序</p>
-<blockquote>
-<p>构造函数和析构函数的调用顺序刚好相反：先构造的后析构</p>
-</blockquote>
-<pre class=" language-c++"><code class="language-c++">#include <iostream>
-#include <string>
-
-using namespace std;
-
-class Student&#123;
-private:
-    char *name;
-    char *stu_no;
-    float score;
-public:
-    Student(char *name1, char *stu_no1, float score1);
-    ~Student();
-    void modify(float score1);
-    void show();
-&#125;;
-
-Student::Student(char *name1, char *stu_no1, float score1)
-&#123;
-    name = new char[strlen(name1) + 1];
-    strcpy(name, name1);
-    stu_no = new char[strlen(stu_no1) + 1];
-    strcpy(stu_no, stu_no1);
-    score = score1;
-&#125;
-
-Student::~Student() 
-&#123;
-    delete []name;
-    delete []stu_no;
-&#125;
-
-void Student::modify(float score1) 
-&#123;
-    score = score1;
-&#125;
-
-void Student::show()
-&#123;
-    cout << "姓名: " << name << endl;
-    cout << "学号: " << stu_no << endl;
-    cout << "成绩：" << score << endl;
-&#125;
+<h3 id="一、暴力做法"><a href="#一、暴力做法" class="headerlink" title="一、暴力做法"></a>一、暴力做法</h3><p>这道题的意思就是求出所有区间能够整除给定数K的区间个数，按照正常思路，首先想到的就是枚举一下所有区间，算出每个区间的和，将这个和去模K，若能整除，则计数器+1。(值得注意的是，该数据最大值超过了int的范围，因此要用long long int)</p>
+<p>代码如下：</p>
+<pre class=" language-c++"><code class="language-c++">#include<iostream>
+#include<algorithm>
+const int N = 100010;
+long long int s[N], res;
+int n, k;
 
 int main()
 &#123;
-    Student stu("邻菲无口", "15462421", 99);
-    stu.modify(100);
-    stu.show();
+    scanf("%d%d",&n,&k);
+    for(int i = 1; i <= n; i++)
+    &#123;
+        scanf("%d",&s[i]);
+    &#125;
+    for(int i = 1; i <= n; i++)
+    &#123;
+        for(int j = 1; j <=i; j++)
+        &#123;
+            int sum = 0;
+            for(int h = j; h <= i; h++)
+            &#123;
+                sum += s[h];
+            &#125;
+            if(sum%k == 0)
+                res++;
+        &#125;
+    &#125;
+    printf("%d",res);
     return 0;
 &#125;
 </code></pre>
-<p>如果没有给定构造函数和析构函数，编译系统会自动生成默认构造函数和析构函数。</p>
-<p>本章学习于<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44368437/article/details/117563488?ops_request_misc=%7B%22request_id%22:%22163806200616780265482524%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=163806200616780265482524&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-2-117563488.first_rank_v2_pc_rank_v29&utm_term=C++&spm=1018.2226.3001.4187">《C++面向对象程序设计》✍千处细节、万字总结（建议收藏）_恋风-CSDN博客</a></p>
+<h3 id="二、前缀和方法降低时间复杂度"><a href="#二、前缀和方法降低时间复杂度" class="headerlink" title="二、前缀和方法降低时间复杂度"></a>二、前缀和方法降低时间复杂度</h3><p>首先先简单描述一下什么是前缀和，就是可以这样理解：利用一个数据s[N]，里面存放的是从第一个元素里的值加到该元素（i）的值的总和，存放到s[i]里。</p>
+<p>利用这个方法可以减少一层循环</p>
+<p>代码如下：</p>
+<pre class=" language-c++"><code class="language-c++">#include<iostream>
+#include<algorithm>
+const int N = 100010;
+long long int s[N], res;
+int n, k;
+
+int main()
+&#123;
+    scanf("%d%d",&n,&k);
+    for(int i = 1; i <= n; i++)
+    &#123;
+        scanf("%d",&s[i]);
+        s[i] += s[i-1]              //前缀和思想
+    &#125;
+    for(int i = 1; i <= n; i++)
+    &#123;
+        for(int j = 1; j <=i; j++)
+        &#123;
+            if((s[i]-s[j-1]) % k == 0)
+            &#123;
+                res++;
+            &#125;
+        &#125;
+    &#125;
+    printf("%d",res);
+    return 0;
+&#125;
+</code></pre>
+<h3 id="三、优化成O-n-复杂度（重头戏hh）"><a href="#三、优化成O-n-复杂度（重头戏hh）" class="headerlink" title="三、优化成O(n)复杂度（重头戏hh）"></a>三、优化成O(n)复杂度（重头戏hh）</h3><p>(1)首先肯定是用前缀和数组s[N]，而对于过分大的数字两层循环会超时，因此还得优化到一层循环。</p>
+<p>(2)分析可得若求某一个区间的和，就是s[r]−s[l−1]。而若某个区间满足k倍区间,<br>就一定满足(s[r]−s[l−1])%k==0,然后化解就是s[r]%k==s[l−1]%k。</p>
+<p>(3)此时，计算完前缀和数组后，用一个cnt[n]<br>数组(其中cnt[i]==1表示前缀和数组中对k取模余数是i的前缀和有1</p>
+<p>个)来记录有多少个前缀和他们取模之后是一样的数字。</p>
+<p>(4)从前往后循环，每次记录前缀和取模之后的数据，也就是cnt[s[i]<br>%k]，往后循环一次，先看前面有无和该前缀和取模之后数字一样的前缀和，有1个一样的则答案+1、2个答案+2···；随后记得每次把cnt[s[i]%k]++。<br>注意</p>
+<p>还得把cnt[0]<br>赋值1，因为没有计算0%k==0这一项。</p>
+<p>本人在思考的时候，一直没办法理解这两行代码：</p>
+<pre><code>res += cnt[sum[i] % k];
+cnt[sum[i] % k]++;
+</code></pre>
+<p>直到某一时刻突然感觉任督二脉被打通了，然后就明白了。cnt其实累积的是从第1个到第l-1个的与s[r]相同余数的个数，等到枚举到r = i的时候，就可以知道前面有几个跟s[r]相等的了。</p>
+<p>上代码：</p>
+<pre class=" language-c++"><code class="language-c++">#include<iostream>
+#include<algorithm>
+
+using namespace std;
+
+const int N = 100010;
+
+long long int s[N];
+int cnt[N];
+
+int n,k;
+long long int res;
+
+int main()&#123;
+    cnt[0] = 1;
+    scanf("%d%d",&n,&k);
+    for(int i=1;i<=n;i++)&#123;
+        scanf("%lld",&s[i]);
+        s[i] += s[i-1];
+    &#125;
+    
+    for(int i=1;i<=n;i++)&#123;
+        res += cnt[s[i]%k];
+        cnt[s[i]%k]++;
+    &#125;
+    printf("%lld",res);
+    return 0;
+&#125;
+</code></pre>
+<p>ps:蓝桥杯的题目就是思路难想但是代码简洁，因此要多思考，如果遇到没办法用最优解来解决的，也可以先从暴力来做，一步一步优化，蓝桥杯是按照通过的例子来给分的。</p>
 
                 
             </div>
@@ -668,7 +625,7 @@ int main()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://lluoyusheng.github.io/2021/11/28/C-%E5%AD%A6%E4%B9%A0%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89/">http://lluoyusheng.github.io/2021/11/28/C-%E5%AD%A6%E4%B9%A0%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89/</a>
+                    <a href="http://lluoyusheng.github.io/2021/12/12/K%E5%80%8D%E5%8C%BA%E9%97%B4/">http://lluoyusheng.github.io/2021/12/12/K%E5%80%8D%E5%8C%BA%E9%97%B4/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -706,8 +663,8 @@ int main()
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/C/">
-                                    <span class="chip bg-color">C++</span>
+                                <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/">
+                                    <span class="chip bg-color">前缀和</span>
                                 </a>
                             
                         </div>
@@ -879,9 +836,10 @@ int main()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/12/12/K%E5%80%8D%E5%8C%BA%E9%97%B4/">
                     <div class="card-image">
@@ -899,9 +857,9 @@ int main()
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -910,6 +868,7 @@ int main()
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -928,13 +887,13 @@ int main()
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/11/26/C-%E5%AD%A6%E4%B9%A0%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89/">
+                <a href="/2021/11/28/C-%E5%AD%A6%E4%B9%A0%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="C++学习篇（一）">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="C++学习篇（二）">
                         
-                        <span class="card-title">C++学习篇（一）</span>
+                        <span class="card-title">C++学习篇（二）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -945,7 +904,7 @@ int main()
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-28
                             </span>
                         <span class="publish-author">
                             
@@ -958,8 +917,8 @@ int main()
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/C-%EF%BC%9B%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/">
-                        <span class="chip bg-color">C++；类和对象</span>
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>
